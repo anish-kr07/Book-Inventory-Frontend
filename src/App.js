@@ -6,9 +6,7 @@ import './App.css';
 import BookCard from './components/BookCard';
 import Card from './components/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-
-
-
+import {Navbar,FormControl,Form,Row,Col,Button} from 'react-bootstrap'
 
 
 const host = "http://localhost:8080"
@@ -18,44 +16,65 @@ class App extends Component {
     super(props) 
     this.state = {
         book:"",
-        // allBooks:{}
       }  
-    // this.getBooksForHomepage = this.getBooksForHomepage.bind(this)  
   }
-  componentDidMount(){
-      axios.get(host + "/getBooksOnSearch").then(data => {
-        this.setState({book:data.data})
-      })
-
+  componentWillMount(){
       axios.get(host + "/getBooks").then(data => {
         this.setState({allBooks:data.data})
       })
+  }
+
+  updateBookInfo=(book)=>{
+    this.props.updateBookInfo(book)
+  }
+
+  changeToLogs=()=>{
+    this.props.changeToLogs()
+  }
+
+  changeToAdd=()=>{
+    this.props.changeToAdd();
+  }
+
+  searchBook=()=>{
+    axios.get("http://localhost:8080/books/search/"+this.inputSearch.value)
+    .then(rsp => {
+        this.setState({allBooks:rsp.data})
+    })
   }
   
 
   render() {
     let bookList = this.state.allBooks && this.state.allBooks.map( book =>{
-     return  <BookCard data={book} />
+     return  ( <Col sm={3}> <BookCard data={book} updateBookInfo={this.updateBookInfo} view="EditBook"/></Col>)
     })
     return (
-      <div className="App">
-        <div className="App-header">
-          {/* <img src="http://books.google.com/books/content?id=twlUtwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" className="App-logo" alt="logo" /> */}
-          <h2>Book Inventory</h2>
-        </div>
-        <p>
-          {/* {this.state.allBooks && this.state.allBooks[0].title} */}
-          {/* <BookCard  title={this.state.allBooks && this.state.allBooks[0].title}/> */}
+        [<div>
+            <Row style={{textAlign: "right"}}>
+            <Col sm={6}>
+                  <Button variant="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.changeToAdd()}>
+                    Add Book
+                  </Button>
+              </Col>
+              <Col sm={2}>
+                    <Button variant="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.changeToLogs()}>
+                        Audit Logs
+                    </Button>
+                </Col>
+              <Col sm={4}>
+                <Form inline style={{margin:'1em'}} >
+                  <FormControl  type="text" 
+                                ref={(n) => {this.inputSearch = n}}
+                                placeholder="Search"
+                                className="mr-sm-2" />
+                  <Button variant="outline-success" onClick={()=>this.searchBook()}>Search</Button>
+                </Form>
+              </Col>
+            </Row>
+          </div>,
+        <Row>
           {bookList}
-          {/* <Card title="The Subtle art of Not Giving A F*ck"/> */}
-          {/* <Card >
-            <CardHeader
-                title="The Subtle art of Not Giving A F*ck"
-                subheader="By Anish"
-              />
-          </Card> */}
-        </p>
-      </div>
+        </Row>]
     );
   }
 }
