@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../src/components/Header'
 import App from './App'
-import BookEdit from '../src/components/BookEdit';
+// import BookEdit from '../src/components/BookEdit';
 import AuditLogs from './components/AuditLogs';
 import SearchBookApi from './components/SearchBookApi';
 
@@ -44,14 +44,14 @@ class Route extends Component {
           )
           break;
 
-        case 'edit':
-        return (
-            <div>
-            <Header />
-            <BookEdit  book={this.state.selectedBook}/>
-            </div>
-        )
-        break;  
+        // case 'edit':
+        // return (
+        //     <div>
+        //     <Header />
+        //     <BookEdit  book={this.state.selectedBook}/>
+        //     </div>
+        // )
+        // break;  
 
         case 'add':
             return (

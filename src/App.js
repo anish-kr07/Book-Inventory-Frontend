@@ -4,7 +4,6 @@ import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 import BookCard from './components/BookCard';
-import Card from './components/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import {Navbar,FormControl,Form,Row,Col,Button} from 'react-bootstrap'
 
@@ -52,22 +51,34 @@ class App extends Component {
         [<div>
             <Row style={{textAlign: "right"}}>
             <Col sm={6}>
-                  <Button variant="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.changeToAdd()}>
+                  <Button
+                    id="addBookButton" 
+                    variant="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.changeToAdd()}>
                     Add Book
                   </Button>
               </Col>
               <Col sm={2}>
-                    <Button variant="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.changeToLogs()}>
+                    <Button
+                        id="auditLogsButton" 
+                        variant="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.changeToLogs()}>
                         Audit Logs
                     </Button>
                 </Col>
               <Col sm={4}>
                 <Form inline style={{margin:'1em'}} >
-                  <FormControl  type="text" 
-                                ref={(n) => {this.inputSearch = n}}
-                                placeholder="Search"
-                                className="mr-sm-2" />
-                  <Button variant="outline-success" onClick={()=>this.searchBook()}>Search</Button>
+                  <FormControl  
+                    id="inputSearchButton"
+                    type="text" 
+                    ref={(n) => {this.inputSearch = n}}
+                    placeholder="Search"
+                    className="mr-sm-2" />
+                  <Button 
+                    id="searchButton" 
+                    variant="outline-success" 
+                    onClick={()=>this.searchBook()}
+                    >
+                      Search
+                  </Button>
                 </Form>
               </Col>
             </Row>

@@ -45,12 +45,16 @@ export default class SearchBookApi extends React.Component {
             <Row>
                   <Col >
                     <Form inline style={{margin:'1em'}} >
-                    <FormControl  type="text" 
-                             ref={(n) => {this.input = n}}
-                            placeholder="Search"
-                            className="mr-sm-2" />
+                    <FormControl 
+                        id="inputSearchButton"
+                        type="text" 
+                        ref={(n) => {this.input = n}}
+                        placeholder="Search"
+                        className="mr-sm-2" />
                  
-                      <Button variant="primary"  onClick={this.getData}>
+                      <Button
+                        id="searchButton" 
+                        variant="primary"  onClick={this.getData}>
                         search
                       </Button>
                       </Form> 

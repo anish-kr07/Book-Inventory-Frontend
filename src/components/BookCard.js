@@ -125,6 +125,7 @@ export default class BookCard extends React.Component{
         let buttonsForEditBook = <div>
                                     <Button
                                             onClick={() =>this.updateBookInfo()}
+                                            id="editButton"
                                             > <IconButton  color="primary">
                                                 <SvgIcon>
                                                     <path d={editButton} />
@@ -132,6 +133,7 @@ export default class BookCard extends React.Component{
                                             </IconButton>
                                     </Button>
                                     <Button 
+                                            id="deleteButton"
                                             onClick={()=>{this.deleteBook()}}
                                         > <IconButton aria-label="Delete" color="primary">
                                                 <SvgIcon>
@@ -141,12 +143,16 @@ export default class BookCard extends React.Component{
                                     </Button>
                                 </div>
           let buttonsForAddBook = <div>
-                                        <Button variant="contained" color="primary" style={{margin:'1em',textAlign:'right'}}  onClick={()=>this.editBookInfoToAddToStore()}>
+                                        <Button
+                                        id="addtoStore"
+                                         variant="contained" color="primary" style={{margin:'1em',textAlign:'right'}}  
+                                         onClick={()=>this.editBookInfoToAddToStore()}>
                                             Add to Store
                                         </Button>
                                     </div>
         let buttonsForSaveChanges = <div>
                                         <Button
+                                            id="saveButton"
                                             onClick={() =>this.saveData()}
                                             > 
                                                 <IconButton  color="primary">
@@ -156,6 +162,7 @@ export default class BookCard extends React.Component{
                                                 </IconButton>
                                         </Button>
                                         <Button
+                                            id="cancelButton"
                                             onClick={() =>this.updateBookInfoCancel()}
                                             > 
                                                 <IconButton  color="primary">
@@ -172,6 +179,7 @@ export default class BookCard extends React.Component{
                 <div>
                 <Card className="cardWhole">
                     <CardHeader
+                        id="cardTitle"
                         title={this.props.data.title}
                         subheader={"By "+(this.props.data.authors && this.props.data.authors.join(", "))}
                     />

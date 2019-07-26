@@ -9,7 +9,9 @@ export default class Header extends Component{
         return (
             <div >
                 <div className="App-header">
-                    <span  style={{cursor:'pointer'}} onClick={()=>{window.location.reload()}}>
+                    <span
+                        id="homeButton"  
+                        style={{cursor:'pointer'}} onClick={()=>{window.location.reload()}}>
                         <IconButton  color="primary">
                             <SvgIcon>
                                 <path d={homeButton} />

@@ -38,7 +38,9 @@ export default class AuditLogs extends Component {
           <Row>
                 <Col  className="tableHeader">  <h1>Audit Logs</h1> </Col>
               </Row>
-              <Table striped bordered hover>
+              <Table 
+                id="auditTable"
+                striped bordered hover>
               <thead>
                   <tr>
                   <th>#</th>
